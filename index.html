@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 132%27%3E%3Cpolygon points=%2750,4 81,38 90,60 50,128 10,64 19,42%27 fill=%27%23D9B96C%27/%3E%3Cpolygon points=%2710,64 50,50 90,60 50,82%27 fill=%27%23453A29%27/%3E%3C/svg%3E">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#060504">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Horizons — Beyond Every Horizon</title>
+<meta name="description" content="Seven Horizons is a Dubai-based commerce and technology group connecting trusted products, sourcing solutions and AI innovation across the Middle East and Africa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Jost:wght@300;400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#060504 !important;color-scheme:dark}
+html{scroll-behavior:smooth}
+body{background:#060504 !important;color:#F9F4E7;font-family:"Jost",sans-serif;font-size:17px;font-weight:300;
+  line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(140% 90% at 50% -10%,rgba(217,185,108,.07),transparent 55%),
+             radial-gradient(120% 80% at 50% 115%,rgba(138,110,60,.08),transparent 55%)}
+::selection{background:#D9B96C;color:#060504}
+
+/* ================= PRELOADER ================= */
+.loader{position:fixed;inset:0;z-index:300;display:grid;place-items:center;background:#060504}
+.loader .l-inner{text-align:center;position:relative}
+.l-emblem{width:110px;height:110px;margin:0 auto 30px}
+.l-emblem svg{width:100%;height:100%;overflow:visible}
+.l-emblem .ring{stroke-dasharray:302;stroke-dashoffset:302}
+.l-emblem .arc{stroke-dasharray:120;stroke-dashoffset:120}
+.l-emblem .hline{stroke-dasharray:70;stroke-dashoffset:70}
+.l-emblem .seven{opacity:0}
+.l-word{font-family:"Cinzel",serif;font-size:15px;letter-spacing:.55em;text-transform:uppercase;color:#D9B96C;
+  overflow:hidden;height:1.6em}
+.l-word span{display:inline-block;transform:translateY(120%)}
+.l-count{position:absolute;bottom:-70px;left:50%;transform:translateX(-50%);
+  font-family:"Cormorant Garamond",serif;font-style:italic;font-size:15px;color:#BDB29A;letter-spacing:.2em}
+.curtain{position:fixed;left:0;width:100%;height:50.5vh;z-index:290;background:#060504;border-color:#5C4520}
+.curtain.top{top:0;border-bottom:1px solid rgba(217,185,108,.28)}
+.curtain.bot{bottom:0;border-top:1px solid rgba(217,185,108,.28)}
+
+/* ================= CURSOR ================= */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:250;border-radius:50%;
+  transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cursor-dot{width:7px;height:7px;background:#F7E7BD}
+.cursor-ring{width:38px;height:38px;border:1px solid #D9B96C;transition:width .35s,height .35s,border-color .35s,opacity .35s}
+.cursor-ring.hovering{width:64px;height:64px;border-color:#F7E7BD}
+@media(hover:none){.cursor-dot,.cursor-ring{display:none}}
+
+/* ================= TEXTURE / FX ================= */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:80;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 8s steps(6) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}25%{transform:translate(-1.5%,1%)}50%{transform:translate(1%,-1.5%)}75%{transform:translate(-1%,1.5%)}}
+#dust{position:absolute;inset:0;pointer-events:none}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;opacity:.55;will-change:transform;
+  background:radial-gradient(circle,rgba(217,185,108,.35),transparent 65%)}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:230;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,#5C4520,#D9B96C,#F7E7BD)}
+
+/* gold foil text — animated metallic sheen */
+.foil{color:#E3C989;background:linear-gradient(110deg,#8A6E3C 0%,#D9B96C 18%,#F7E7BD 32%,#D9B96C 46%,#8A6E3C 60%,#D9B96C 78%,#F7E7BD 92%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:foil 6s linear infinite}
+@keyframes foil{to{background-position:-220% 0}}
+
+/* ornament diamond */
+.dia{display:inline-block;width:7px;height:7px;transform:rotate(45deg);background:#D9B96C;vertical-align:middle}
+
+/* ================= TYPE HELPERS ================= */
+.eyebrow{display:inline-flex;align-items:center;gap:16px;font-size:11.5px;letter-spacing:.42em;text-transform:uppercase;
+  color:#D9B96C;font-weight:500;margin-bottom:26px}
+.eyebrow::before,.eyebrow.center::after{content:"";width:40px;height:1px;background:linear-gradient(90deg,transparent,#D9B96C)}
+.eyebrow.center::after{background:linear-gradient(90deg,#D9B96C,transparent)}
+h2.title{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(32px,4.4vw,58px);line-height:1.14;letter-spacing:.02em;text-transform:uppercase}
+.title .it{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;text-transform:none;font-size:1.12em}
+.sub{color:#C9BFA8;max-width:560px;margin-top:22px;font-size:17.5px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+section{position:relative;z-index:2}
+.reveal{opacity:0;transform:translateY(50px)}
+.reveal-l{opacity:0;transform:translateX(-56px)}
+.reveal-r{opacity:0;transform:translateX(56px)}
+.rule{height:1px;background:linear-gradient(90deg,transparent,rgba(217,185,108,.28) 20%,rgba(217,185,108,.28) 80%,transparent);position:relative;margin:0 auto}
+.rule::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;transform:translate(-50%,-50%) rotate(45deg);
+  background:#060504;border:1px solid #D9B96C}
+
+/* ================= BUTTONS ================= */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 36px;cursor:pointer;border:0;
+  font-family:"Jost",sans-serif;font-weight:500;font-size:13px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;
+  position:relative;overflow:hidden;transition:color .4s,border-color .4s,box-shadow .4s;will-change:transform}
+.btn-gold{background:linear-gradient(115deg,#F0DCA8,#D9B96C 40%,#9A7A42 90%);color:#241905;
+  box-shadow:0 14px 44px -12px rgba(217,185,108,.55),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-gold:hover{box-shadow:0 20px 56px -10px rgba(217,185,108,.7),inset 0 1px 0 rgba(255,255,255,.6)}
+.btn-line{background:transparent;color:#F9F4E7;border:1px solid rgba(217,185,108,.28)}
+.btn-line::after{content:"";position:absolute;inset:3px;border:1px solid rgba(217,185,108,.25);pointer-events:none;transition:border-color .4s}
+.btn-line:hover{border-color:#D9B96C;color:#F7E7BD}
+.btn-line:hover::after{border-color:rgba(217,185,108,.5)}
+.btn .shine{position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg)}
+.btn-gold:hover .shine{animation:shine 1s ease}
+@keyframes shine{to{left:140%}}
+.btn-sm{padding:13px 26px;font-size:11.5px}
+.wa-ico{width:16px;height:16px;fill:currentColor}
+
+/* ================= NAV ================= */
+nav{position:fixed;top:0;left:0;right:0;z-index:210;transition:transform .5s cubic-bezier(.22,1,.36,1),background .4s,border-color .4s;
+  border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,5,4,.8);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-color:rgba(249,244,231,.12)}
+nav.hidden{transform:translateY(-100%)}
+.nav-inner{max-width:1320px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:#F9F4E7}
+.brand-mark{width:42px;height:42px;flex-shrink:0}
+.brand-mark svg{width:100%;height:100%}
+.brand-name{font-family:"Cinzel",serif;font-size:16px;letter-spacing:.18em;text-transform:uppercase;line-height:1.2}
+.brand-name small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:11px;letter-spacing:.24em;color:#D9B96C;text-transform:none}
+.nav-links{display:flex;gap:38px;list-style:none}
+.nav-links a{color:#BDB29A;text-decoration:none;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;
+  position:relative;transition:color .3s;padding:4px 0}
+.nav-links a::before,.nav-links a::after{content:"";position:absolute;bottom:-4px;height:1px;background:#D9B96C;transition:width .45s cubic-bezier(.22,1,.36,1)}
+.nav-links a::before{left:50%;width:0}
+.nav-links a::after{right:50%;width:0}
+.nav-links a:hover{color:#F7E7BD}
+.nav-links a:hover::before,.nav-links a:hover::after{width:50%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;width:46px;height:46px;border:1px solid rgba(217,185,108,.28);background:transparent;cursor:pointer;position:relative;z-index:230}
+.burger i{position:absolute;left:12px;right:12px;height:1.5px;background:#D9B96C;transition:all .4s cubic-bezier(.22,1,.36,1)}
+.burger i:nth-child(1){top:17px}.burger i:nth-child(2){top:23px}.burger i:nth-child(3){top:29px}
+.burger.open i:nth-child(1){top:23px;transform:rotate(45deg)}
+.burger.open i:nth-child(2){opacity:0}
+.burger.open i:nth-child(3){top:23px;transform:rotate(-45deg)}
+.mmenu{position:fixed;inset:0;z-index:220;background:rgba(6,5,4,.98);display:flex;flex-direction:column;justify-content:center;
+  padding:0 34px;visibility:hidden;opacity:0}
+.mmenu::before{content:"";position:absolute;inset:16px;border:1px solid rgba(249,244,231,.12);pointer-events:none}
+.mmenu a.mlink{font-family:"Cinzel",serif;font-size:clamp(30px,8vw,46px);letter-spacing:.08em;text-transform:uppercase;color:#F9F4E7;
+  text-decoration:none;padding:16px 0;border-bottom:1px solid rgba(249,244,231,.12);display:flex;justify-content:space-between;align-items:center;
+  opacity:0;transform:translateY(34px)}
+.mmenu a.mlink em{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:15px;color:#D9B96C;letter-spacing:.2em}
+.mmenu .m-cta{margin-top:38px;opacity:0;transform:translateY(34px)}
+
+/* ================= HERO ================= */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:150px 0 0;overflow:hidden;text-align:center}
+.hero .frame{position:absolute;inset:clamp(12px,2vw,26px);border:1px solid rgba(249,244,231,.12);pointer-events:none;z-index:1}
+.hero .frame::before,.hero .frame::after,
+.hero .frame b::before,.hero .frame b::after{content:"";position:absolute;width:26px;height:26px;border-color:#D9B96C;border-style:solid}
+.hero .frame::before{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px}
+.hero .frame::after{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0}
+.hero .frame b::before{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px}
+.hero .frame b::after{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0}
+.h-layers{position:absolute;inset:0;overflow:hidden}
+.horizon-art{position:absolute;left:50%;bottom:-5vw;transform:translateX(-50%);width:min(1560px,150vw);pointer-events:none}
+.horizon-art svg{width:100%;height:auto;display:block}
+.sun{position:absolute;left:50%;bottom:1vw;transform:translate(-50%,42%);width:min(620px,76vw);aspect-ratio:2/1;
+  border-radius:50% 50% 0 0/100% 100% 0 0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(247,231,189,.4),rgba(217,185,108,.16) 45%,transparent 72%)}
+.hero-eyebrow{font-size:11.5px;letter-spacing:.5em;text-transform:uppercase;color:#D9B96C;font-weight:500;opacity:0;position:relative}
+.hero-eyebrow .sep{margin:0 14px;color:#8A6E3C;font-size:9px;vertical-align:2px}
+h1{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(38px,6.6vw,88px);line-height:1.12;letter-spacing:.03em;
+  text-transform:uppercase;margin:30px auto 0;max-width:1040px;position:relative;perspective:900px}
+h1 .w{display:inline-block;white-space:nowrap}
+h1 .ch{display:inline-block;opacity:0;transform:translateY(70%) rotateX(-80deg);transform-origin:50% 100%}
+h1 .trust{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;text-transform:none;font-size:1.16em}
+h1 .trust .ch{color:#E9CE8F;background:linear-gradient(110deg,#8A6E3C 0%,#D9B96C 18%,#F7E7BD 32%,#D9B96C 46%,#8A6E3C 60%,#D9B96C 78%,#F7E7BD 92%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:foil 6s linear infinite}
+.hero-sub{color:#CDC3AC;font-size:clamp(16px,2vw,19px);max-width:640px;margin:28px auto 44px;opacity:0;transform:translateY(24px);position:relative}
+.hero-ctas{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(24px);position:relative}
+.hero-seven{margin:78px auto 0;display:flex;justify-content:center;gap:clamp(12px,3vw,40px);flex-wrap:wrap;position:relative;padding-bottom:120px}
+.h7{text-align:center;text-decoration:none;color:#BDB29A;transition:color .35s;min-width:66px;opacity:0;transform:translateY(24px)}
+.h7 b{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:17px;color:#8A6E3C;transition:color .35s,transform .35s}
+.h7 span{font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+.h7 .tick{display:block;width:1px;height:16px;margin:8px auto 0;background:linear-gradient(180deg,#D9B96C,transparent)}
+.h7:hover{color:#F7E7BD}
+.h7:hover b{color:#F7E7BD;transform:translateY(-5px)}
+.scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.4em;
+  text-transform:uppercase;color:#BDB29A;opacity:0}
+.scroll-cue::after{content:"";display:block;width:1px;height:44px;margin:12px auto 0;
+  background:linear-gradient(180deg,#D9B96C,transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ================= MARQUEES ================= */
+.trustbar{border-top:1px solid rgba(249,244,231,.12);border-bottom:1px solid rgba(249,244,231,.12);padding:0;overflow:hidden;background:rgba(246,241,228,.014)}
+.mq{display:flex;width:max-content;padding:22px 0}
+.mq.rev{animation-direction:reverse;border-top:1px solid rgba(249,244,231,.12)}
+.mq-a{animation:scroll 38s linear infinite}
+.mq:hover{animation-play-state:paused}
+.mq .grp{display:flex;align-items:center;gap:58px;padding-right:58px}
+.tk{display:flex;align-items:center;gap:16px;white-space:nowrap;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:#BDB29A}
+.tk .dia{width:6px;height:6px}
+.tk.serif{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:19px;letter-spacing:.06em;text-transform:none;color:#D9B96C}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ================= NUMBERS ================= */
+.numbers{padding:110px 0 30px}
+.num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(249,244,231,.12);border:1px solid rgba(249,244,231,.12);position:relative}
+.num-grid::before,.num-grid::after{content:"";position:absolute;width:20px;height:20px;border:solid #D9B96C;z-index:2}
+.num-grid::before{top:-6px;left:-6px;border-width:1.5px 0 0 1.5px}
+.num-grid::after{bottom:-6px;right:-6px;border-width:0 1.5px 1.5px 0}
+.num{background:#060504;padding:48px 36px;transition:background .4s;text-align:center}
+.num:hover{background:#100D08}
+.num b{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(42px,4.2vw,62px);display:block;line-height:1}
+.num span{color:#BDB29A;font-size:12.5px;letter-spacing:.28em;text-transform:uppercase;display:block;margin-top:14px}
+
+/* ================= HORIZONS ================= */
+.horizons{padding:140px 0}
+.hz-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:74px}
+.hz-list{border-top:1px solid rgba(249,244,231,.12)}
+.hz{display:grid;grid-template-columns:100px 1.1fr 1.5fr auto;gap:28px;align-items:center;padding:38px 12px;
+  border-bottom:1px solid rgba(249,244,231,.12);text-decoration:none;color:inherit;position:relative;overflow:hidden;
+  transition:padding .5s cubic-bezier(.22,1,.36,1)}
+.hz::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(217,185,108,.12),rgba(217,185,108,.02) 60%,transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.hz::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#F7E7BD,#8A6E3C);
+  transform:scaleY(0);transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.hz:hover::before{transform:scaleX(1)}
+.hz:hover::after{transform:scaleY(1)}
+.hz:hover{padding-left:30px}
+.hz .no{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:34px;color:#5C4520;transition:color .4s}
+.hz:hover .no{color:#F7E7BD}
+.hz h3{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(20px,2.4vw,29px);letter-spacing:.05em;text-transform:uppercase}
+.hz .tagline{font-family:"Cormorant Garamond",serif;font-style:italic;color:#D9B96C;font-size:18px;display:block;margin-top:3px}
+.hz p{color:#BDB29A;font-size:15.5px;max-width:460px}
+.hz .go{width:56px;height:56px;border:1px solid rgba(217,185,108,.28);border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  position:relative;transition:all .5s cubic-bezier(.22,1,.36,1)}
+.hz .go::after{content:"";position:absolute;inset:5px;border:1px dashed rgba(217,185,108,.3);border-radius:50%;transition:transform 1s}
+.hz:hover .go::after{transform:rotate(180deg)}
+.hz .go svg{width:19px;height:19px;stroke:#F9F4E7;stroke-width:1.5;fill:none;transition:stroke .3s}
+.hz:hover .go{background:linear-gradient(140deg,#F7E7BD,#8A6E3C);border-color:transparent;transform:rotate(45deg)}
+.hz:hover .go svg{stroke:#060504}
+.hz .soon{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#D9B96C;border:1px solid rgba(217,185,108,.28);
+  padding:5px 12px;margin-left:14px;vertical-align:middle;white-space:nowrap}
+
+/* ================= COLLECTION ================= */
+.collection{padding:140px 0;background:linear-gradient(180deg,transparent,rgba(217,185,108,.05),transparent)}
+.col-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:70px;perspective:1400px}
+.pcard{position:relative;border:1px solid rgba(249,244,231,.12);background:linear-gradient(170deg,#181309,#100D08);
+  padding:34px 26px 28px;min-height:360px;display:flex;flex-direction:column;transform-style:preserve-3d;overflow:hidden;
+  transition:border-color .4s;clip-path:inset(0 0 100% 0)}
+.pcard .corner{position:absolute;width:18px;height:18px;border:solid #D9B96C;opacity:.8;transition:width .4s,height .4s}
+.pcard .c1{top:8px;left:8px;border-width:1px 0 0 1px}
+.pcard .c2{top:8px;right:8px;border-width:1px 1px 0 0}
+.pcard .c3{bottom:8px;left:8px;border-width:0 0 1px 1px}
+.pcard .c4{bottom:8px;right:8px;border-width:0 1px 1px 0}
+.pcard:hover .corner{width:30px;height:30px}
+.pcard::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),rgba(247,231,189,.13),transparent 45%)}
+.pcard:hover{border-color:rgba(217,185,108,.5)}
+.pcard:hover::before{opacity:1}
+.pcard .verified{display:inline-flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#D9B96C;margin:0 auto}
+.pcard .verified svg{width:13px;height:13px;stroke:#D9B96C;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pcard .emblem{width:86px;height:86px;margin:30px auto;border:1px solid rgba(217,185,108,.28);border-radius:50%;display:grid;place-items:center;position:relative}
+.pcard .emblem::before{content:"";position:absolute;inset:-7px;border:1px solid rgba(217,185,108,.14);border-radius:50%}
+.pcard .emblem::after{content:"";position:absolute;inset:7px;border:1px dashed rgba(217,185,108,.4);border-radius:50%;animation:spin 26s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pcard .emblem svg{width:32px;height:32px;stroke:#D9B96C;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pcard h3{font-family:"Cinzel",serif;font-weight:500;font-size:19px;letter-spacing:.06em;text-transform:uppercase;text-align:center}
+.pcard p{color:#BDB29A;font-size:14.5px;text-align:center;margin-top:10px;flex:1}
+.pcard .status{margin-top:22px;text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:16px;color:#D9B96C;
+  border-top:1px solid rgba(249,244,231,.12);padding-top:18px;position:relative;overflow:hidden}
+.pcard .status::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(247,231,189,.16),transparent);animation:shine 3.6s ease infinite}
+
+/* ================= SOURCE ================= */
+.source{padding:140px 0}
+.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:74px;align-items:center}
+.src-form{border:1px solid rgba(217,185,108,.28);background:linear-gradient(170deg,#181309,#100D08);padding:50px 44px;position:relative}
+.src-form::before{content:"";position:absolute;inset:8px;border:1px solid rgba(217,185,108,.16);pointer-events:none}
+.src-form .seal{position:absolute;top:-27px;right:34px;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(140deg,#F7E7BD,#8A6E3C);font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;
+  font-size:24px;color:#060504;box-shadow:0 12px 30px -8px rgba(217,185,108,.5)}
+.field{margin-bottom:26px;position:relative;z-index:1}
+.field label{display:block;font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#D9B96C;margin-bottom:10px}
+.field input,.field textarea{width:100%;background:rgba(6,5,4,.55);border:1px solid rgba(249,244,231,.12);color:#F9F4E7;
+  font-family:"Jost",sans-serif;font-size:15.5px;font-weight:300;padding:16px;outline:none;transition:border-color .3s,box-shadow .3s;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:#D9B96C;box-shadow:0 0 0 3px rgba(217,185,108,.12)}
+.field .up{display:flex;align-items:center;gap:12px;border:1px dashed rgba(217,185,108,.28);padding:17px;color:#BDB29A;font-size:14px;cursor:pointer;transition:border-color .3s,color .3s}
+.field .up:hover{border-color:#D9B96C;color:#F7E7BD}
+.field .up svg{width:18px;height:18px;stroke:#D9B96C;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.steps-mini{margin-top:48px;display:grid;border-left:1px solid rgba(249,244,231,.12);position:relative}
+.steps-mini .trk{position:absolute;left:-1px;top:0;width:1px;height:0;background:linear-gradient(180deg,#F7E7BD,#5C4520)}
+.smini{padding:0 0 32px 32px;position:relative}
+.smini::before{content:"";position:absolute;left:-5px;top:9px;width:9px;height:9px;transform:rotate(45deg);
+  background:#100D08;border:1px solid #5C4520;transition:all .4s}
+.smini.active::before{background:#D9B96C;border-color:#F7E7BD;box-shadow:0 0 16px rgba(217,185,108,.6)}
+.smini h4{font-family:"Cinzel",serif;font-weight:500;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+.smini p{color:#BDB29A;font-size:14.5px;margin-top:5px}
+
+/* ================= LABS ================= */
+.labs{padding:140px 0;background:linear-gradient(180deg,transparent,rgba(217,185,108,.05),transparent);overflow:hidden}
+.labs-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:74px;align-items:center}
+.chat{border:1px solid rgba(217,185,108,.28);background:linear-gradient(170deg,#181309,#100D08);padding:34px;position:relative}
+.chat::before{content:"";position:absolute;inset:8px;border:1px solid rgba(217,185,108,.14);pointer-events:none}
+.chat-head{display:flex;align-items:center;gap:15px;padding-bottom:22px;border-bottom:1px solid rgba(249,244,231,.12);margin-bottom:24px;position:relative;z-index:1}
+.chat-head .ai{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-weight:600;font-size:24px;background:linear-gradient(140deg,#F7E7BD,#8A6E3C);color:#060504;position:relative}
+.chat-head .ai::after{content:"";position:absolute;inset:-5px;border:1px dashed rgba(217,185,108,.4);border-radius:50%;animation:spin 18s linear infinite}
+.chat-head b{font-family:"Cinzel",serif;font-weight:500;font-size:15px;letter-spacing:.1em;text-transform:uppercase;display:block}
+.chat-head span{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;color:#D9B96C}
+.chat-head span::before{content:"●";margin-right:8px;font-size:9px;color:#9DBE9C;animation:blinkdot 2s infinite}
+@keyframes blinkdot{50%{opacity:.3}}
+.bubble{max-width:88%;padding:15px 19px;font-size:15px;margin-bottom:15px;opacity:0;transform:translateY(16px);position:relative;z-index:1}
+.bub-user{margin-left:auto;background:rgba(217,185,108,.15);border:1px solid rgba(217,185,108,.28);color:#F9F4E7;border-radius:16px 16px 4px 16px}
+.bub-ai{background:rgba(246,241,228,.05);border:1px solid rgba(249,244,231,.12);color:#BDB29A;border-radius:16px 16px 16px 4px}
+.bub-ai b{color:#F7E7BD;font-weight:500}
+.typing{display:inline-flex;gap:5px;padding:6px 2px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#D9B96C;animation:tp 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes tp{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.chip{border:1px solid rgba(217,185,108,.28);padding:12px 20px;font-size:14px;color:#BDB29A;text-decoration:none;
+  transition:all .4s cubic-bezier(.22,1,.36,1);display:inline-flex;gap:10px;align-items:center}
+.chip:hover{border-color:#D9B96C;color:#F7E7BD;transform:translateY(-4px);background:rgba(217,185,108,.08);
+  box-shadow:0 12px 28px -12px rgba(217,185,108,.4)}
+.chip::after{content:"→";color:#D9B96C}
+
+/* ================= CTA ================= */
+.cta{padding:160px 0}
+.cta-box{position:relative;border:1px solid rgba(217,185,108,.28);padding:130px 30px;text-align:center;overflow:hidden;
+  background:linear-gradient(180deg,#181309,#060504)}
+.cta-box::before{content:"";position:absolute;inset:10px;border:1px solid rgba(217,185,108,.16);pointer-events:none;z-index:3}
+.cta-box .rays{position:absolute;left:50%;bottom:-30%;transform:translateX(-50%);width:150%;aspect-ratio:2/1;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(247,231,189,.26),rgba(217,185,108,.08) 45%,transparent 70%);
+  animation:breathe 7s ease-in-out infinite alternate}
+@keyframes breathe{to{transform:translateX(-50%) scale(1.14);opacity:.8}}
+.ring-text{position:absolute;top:40px;right:44px;width:130px;height:130px;z-index:3;pointer-events:none}
+.ring-text svg{width:100%;height:100%;overflow:visible;animation:spin 22s linear infinite}
+.ring-text text{font-family:"Jost",sans-serif;font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;fill:#D9B96C}
+.ring-text .dot7{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:30px;fill:#F7E7BD}
+.cta h2{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(34px,5.2vw,66px);line-height:1.12;letter-spacing:.03em;
+  text-transform:uppercase;position:relative;z-index:2}
+.cta h2 .it{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;text-transform:none;font-size:1.14em}
+.cta p{color:#BDB29A;font-size:18px;margin:24px auto 46px;max-width:520px;position:relative;z-index:2}
+.cta .btn{position:relative;z-index:2}
+
+/* ================= FOOTER ================= */
+footer{border-top:1px solid rgba(249,244,231,.12);padding:100px 0 0;overflow:hidden;position:relative;z-index:2}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:48px;padding-bottom:86px}
+.f-grid p{color:#BDB29A;font-size:15px;max-width:300px;margin-top:20px}
+.f-grid h5{font-size:10.5px;letter-spacing:.36em;text-transform:uppercase;color:#D9B96C;margin-bottom:24px;font-weight:500}
+.f-grid ul{list-style:none;display:grid;gap:14px}
+.f-grid a{color:#F9F4E7;opacity:.75;text-decoration:none;font-size:15px;transition:opacity .25s,color .25s}
+.f-grid a:hover{opacity:1;color:#F7E7BD}
+.f-word{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(46px,8.2vw,118px);line-height:1;letter-spacing:.1em;text-align:center;
+  white-space:nowrap;user-select:none;transform:translateY(16%)}
+.f-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:26px 0;border-top:1px solid rgba(249,244,231,.12);
+  color:#BDB29A;font-size:12.5px;letter-spacing:.14em}
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:190;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(140deg,#F7E7BD,#8A6E3C);color:#060504;
+  box-shadow:0 16px 44px -10px rgba(217,185,108,.65);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.wa-float::after{content:"";position:absolute;inset:-6px;border:1px solid rgba(217,185,108,.5);border-radius:50%;animation:wpulse 2.4s ease-out infinite}
+@keyframes wpulse{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.35);opacity:0}}
+.wa-float:hover{transform:scale(1.1) rotate(6deg)}
+.wa-float svg{width:27px;height:27px;fill:#060504}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1020px){
+  .nav-links,.nav-cta .btn{display:none}
+  .burger{display:block}
+  .src-grid,.labs-grid{grid-template-columns:1fr;gap:56px}
+  .col-grid{grid-template-columns:1fr 1fr}
+  .hz{grid-template-columns:56px 1fr auto;grid-template-areas:"no head go" "no desc go"}
+  .hz .no{grid-area:no;font-size:26px}
+  .hz > div:nth-child(2){grid-area:head}
+  .hz p{grid-area:desc}
+  .hz .go{grid-area:go;width:48px;height:48px}
+  .ring-text{width:96px;height:96px;top:24px;right:24px}
+}
+@media(max-width:640px){
+  body{font-size:16px}
+  .col-grid,.num-grid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .hero{padding-top:130px}
+  .hz{grid-template-columns:44px 1fr;grid-template-areas:"no head" "no desc";gap:16px;padding:28px 4px}
+  .hz .go{display:none}
+  .hz:hover{padding-left:12px}
+  .src-form{padding:36px 26px}
+  .cta-box{padding:90px 22px}
+  .wa-float{width:54px;height:54px;right:16px;bottom:16px}
+  .ring-text{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  .reveal,.reveal-l,.reveal-r,.hero-eyebrow,.hero-sub,.hero-ctas,.h7,.scroll-cue,.bubble,h1 .ch{opacity:1!important;transform:none!important}
+  .pcard{clip-path:none!important}
+  .loader,.curtain{display:none!important}
+  .cursor-dot,.cursor-ring{display:none!important}
+}
+
+/* ===== brand identity (matches official logo) ===== */
+.brand-mark{width:32px;height:42px}
+.gem{width:100%;height:auto;display:block}
+.brand-name{font-family:"Poppins",sans-serif;font-weight:800;font-size:17px;letter-spacing:.05em;
+  text-transform:uppercase;line-height:1.15;color:#F9F4E7}
+.brand-name .g7{font-style:normal;color:#D9B96C;margin-right:6px}
+.brand-name small{display:block;font-family:"Jost",sans-serif;font-weight:400;font-size:8px;
+  letter-spacing:.44em;color:#B99A5C;margin-top:4px;text-transform:uppercase}
+.l-emblem{width:92px;height:auto;margin:0 auto 30px}
+.l-word span{font-family:"Poppins",sans-serif;font-weight:800;letter-spacing:.2em;color:#F9F4E7;font-size:17px}
+.l-word .g7{font-style:normal;color:#D9B96C;margin-right:8px}
+.l-tag{font-family:"Jost",sans-serif;font-size:9.5px;letter-spacing:.52em;text-transform:uppercase;
+  color:#8A6E3C;margin-top:12px;opacity:0}
+.crest{width:clamp(78px,9vw,110px);margin:0 auto 34px;opacity:0;position:relative;
+  filter:drop-shadow(0 20px 48px rgba(217,185,108,.4))}
+.crest svg{width:100%;height:auto;display:block}
+.f-word{font-family:"Poppins",sans-serif;font-weight:800;letter-spacing:.05em}
+@media(max-width:640px){
+  .brand-name{font-size:14px}
+  .brand-name small{font-size:7px;letter-spacing:.36em}
+  .brand-mark{width:27px;height:36px}
+  .crest{margin-bottom:26px}
+}
+@media(prefers-reduced-motion:reduce){.crest,.l-tag{opacity:1!important}}
+</style>
+</head>
+<body>
+<!-- preloader -->
+<div class="loader" id="loader">
+  <div class="l-inner">
+    <div class="l-emblem"><svg class="gem" viewBox="0 0 100 132" fill="none"><defs><clipPath id="gload"><polygon points="50,4 81,38 90,60 50,128 10,64 19,42"/></clipPath><linearGradient id="glgload" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#gload)"><polygon class="fct" points="50,4 19,42 50,50" fill="#E3C68B"/><polygon class="fct" points="50,4 50,50 81,38" fill="#F0DCA9"/><polygon class="fct" points="19,42 10,64 50,50" fill="#C29C55"/><polygon class="fct" points="81,38 90,60 50,50" fill="#D2AF66"/><polygon class="fct" points="10,64 50,50 50,82" fill="#5A4B36"/><polygon class="fct" points="50,50 90,60 50,82" fill="#453A29"/><polygon class="fct" points="10,64 50,82 50,128" fill="#C7A35C"/><polygon class="fct" points="50,82 90,60 50,128" fill="#9A7C42"/><rect class="glint" x="-70" y="-4" width="36" height="140" fill="url(#glgload)" transform="skewX(-16)"/></g><polygon points="50,4 81,38 90,60 50,128 10,64 19,42" fill="none" stroke="rgba(247,231,189,.35)" stroke-width="1"/></svg></div>
+    <div class="l-word"><span><i class="g7">7</i>HORIZONS</span></div>
+      <div class="l-tag">Beyond every horizon</div>
+    <div class="l-count" id="lcount">0</div>
+  </div>
+</div>
+<div class="curtain top" id="curT"></div>
+<div class="curtain bot" id="curB"></div>
+
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" data-hover>
+      <span class="brand-mark"><svg class="gem" viewBox="0 0 100 132" fill="none"><defs><clipPath id="gm1"><polygon points="50,4 81,38 90,60 50,128 10,64 19,42"/></clipPath></defs><g clip-path="url(#gm1)"><polygon class="fct" points="50,4 19,42 50,50" fill="#E3C68B"/><polygon class="fct" points="50,4 50,50 81,38" fill="#F0DCA9"/><polygon class="fct" points="19,42 10,64 50,50" fill="#C29C55"/><polygon class="fct" points="81,38 90,60 50,50" fill="#D2AF66"/><polygon class="fct" points="10,64 50,50 50,82" fill="#5A4B36"/><polygon class="fct" points="50,50 90,60 50,82" fill="#453A29"/><polygon class="fct" points="10,64 50,82 50,128" fill="#C7A35C"/><polygon class="fct" points="50,82 90,60 50,128" fill="#9A7C42"/></g><polygon points="50,4 81,38 90,60 50,128 10,64 19,42" fill="none" stroke="rgba(247,231,189,.35)" stroke-width="1"/></svg></span>
+      <span class="brand-name"><i class="g7">7</i>HORIZONS<small>Beyond every horizon</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#horizons" data-hover>Horizons</a></li>
+      <li><a href="#collection" data-hover>Collection</a></li>
+      <li><a href="#source" data-hover>Source</a></li>
+      <li><a href="#labs" data-hover>Labs</a></li>
+      <li><a href="#contact" data-hover>Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-gold btn-sm magnetic" href="https://wa.me/971501447195" data-hover>Request Quote<span class="shine"></span></a>
+      <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mmenu" id="mmenu">
+  <a class="mlink" href="#horizons">Horizons<em>I</em></a>
+  <a class="mlink" href="#collection">Collection<em>II</em></a>
+  <a class="mlink" href="#source">Source<em>III</em></a>
+  <a class="mlink" href="#labs">Labs<em>IV</em></a>
+  <a class="mlink" href="#contact">Contact<em>V</em></a>
+  <div class="m-cta"><a class="btn btn-gold" style="width:100%" href="https://wa.me/971501447195">Request Quote on WhatsApp<span class="shine"></span></a></div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="frame"><b></b></div>
+  <div class="h-layers">
+    <canvas id="dust"></canvas>
+    <div class="glow" style="width:520px;height:520px;top:-140px;right:-120px" data-depth="14"></div>
+    <div class="glow" style="width:560px;height:560px;top:240px;left:-220px;opacity:.4" data-depth="10"></div>
+    <div class="sun" id="sun" data-depth="6"></div>
+    <div class="horizon-art" data-depth="10">
+      <svg viewBox="0 0 1400 260" fill="none">
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="1400" y2="0" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#D9B96C" stop-opacity="0"/><stop offset=".5" stop-color="#F7E7BD"/><stop offset="1" stop-color="#D9B96C" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path id="arc1" d="M100 250 Q700 20 1300 250" stroke="url(#hg)" stroke-width="1.4" stroke-dasharray="1600" stroke-dashoffset="1600"/>
+        <path id="arc2" d="M220 252 Q700 90 1180 252" stroke="url(#hg)" stroke-opacity=".55" stroke-width="1" stroke-dasharray="1200" stroke-dashoffset="1200"/>
+        <path id="arc3" d="M340 254 Q700 155 1060 254" stroke="url(#hg)" stroke-opacity=".3" stroke-width="1" stroke-dasharray="850" stroke-dashoffset="850"/>
+        <line id="base" x1="0" y1="256" x2="1400" y2="256" stroke="url(#hg)" stroke-width="1.6" stroke-dasharray="1400" stroke-dashoffset="1400"/>
+      </svg>
+    </div>
+  </div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="crest" id="crest" data-depth="8"><svg class="gem" viewBox="0 0 100 132" fill="none"><defs><clipPath id="ghero"><polygon points="50,4 81,38 90,60 50,128 10,64 19,42"/></clipPath><linearGradient id="glghero" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#ghero)"><polygon class="fct" points="50,4 19,42 50,50" fill="#E3C68B"/><polygon class="fct" points="50,4 50,50 81,38" fill="#F0DCA9"/><polygon class="fct" points="19,42 10,64 50,50" fill="#C29C55"/><polygon class="fct" points="81,38 90,60 50,50" fill="#D2AF66"/><polygon class="fct" points="10,64 50,50 50,82" fill="#5A4B36"/><polygon class="fct" points="50,50 90,60 50,82" fill="#453A29"/><polygon class="fct" points="10,64 50,82 50,128" fill="#C7A35C"/><polygon class="fct" points="50,82 90,60 50,128" fill="#9A7C42"/><rect class="glint" x="-70" y="-4" width="36" height="140" fill="url(#glghero)" transform="skewX(-16)"/></g><polygon points="50,4 81,38 90,60 50,128 10,64 19,42" fill="none" stroke="rgba(247,231,189,.35)" stroke-width="1"/></svg></div>
+    <div class="hero-eyebrow" id="heroEyebrow">Commerce<span class="sep">✦</span>Technology<span class="sep">✦</span>Global Sourcing</div>
+    <h1 id="headline" data-depth="4">
+      <span class="w">Every</span> <span class="w">Horizon</span><br>
+      <span class="w">Starts</span> <span class="w">With</span> <span class="w trust">Trust.</span>
+    </h1>
+    <p class="hero-sub">Seven Horizons connects global markets through trusted products, sourcing solutions, AI innovation, and strategic commerce partnerships — from Dubai to the world.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-gold magnetic" href="#horizons" data-hover>Explore the Horizons<span class="shine"></span></a>
+      <a class="btn btn-line magnetic" href="https://wa.me/971501447195" data-hover>
+        <svg class="wa-ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.8 2 .8 2.1.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2.1 2.8 2.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.7.8 2 1 .3.2.5.3.5.4.1.1.1.7-.1 1.4Z"/></svg>
+        Source a Product</a>
+    </div>
+    <div class="hero-seven" id="heroSeven">
+      <a class="h7" href="#horizons" data-hover><b>I</b><span>Auto</span><i class="tick"></i></a>
+      <a class="h7" href="#horizons" data-hover><b>II</b><span>Energy</span><i class="tick"></i></a>
+      <a class="h7" href="#horizons" data-hover><b>III</b><span>Tech</span><i class="tick"></i></a>
+      <a class="h7" href="#horizons" data-hover><b>IV</b><span>Industrial</span><i class="tick"></i></a>
+      <a class="h7" href="#horizons" data-hover><b>V</b><span>Living</span><i class="tick"></i></a>
+      <a class="h7" href="#source" data-hover><b>VI</b><span>Source</span><i class="tick"></i></a>
+      <a class="h7" href="#labs" data-hover><b>VII</b><span>Labs</span><i class="tick"></i></a>
+    </div>
+  </div>
+  <div class="scroll-cue" id="scrollCue">Scroll</div>
+</section>
+
+<!-- ============ DOUBLE MARQUEE ============ -->
+<div class="trustbar">
+  <div class="mq mq-a">
+    <div class="grp">
+      <span class="tk"><i class="dia"></i>Trusted sourcing</span><span class="tk"><i class="dia"></i>Secure online payments</span>
+      <span class="tk"><i class="dia"></i>WhatsApp support</span><span class="tk"><i class="dia"></i>Retail &amp; wholesale</span>
+      <span class="tk"><i class="dia"></i>Global market focus</span><span class="tk"><i class="dia"></i>AI-assisted experience</span>
+    </div>
+    <div class="grp" aria-hidden="true">
+      <span class="tk"><i class="dia"></i>Trusted sourcing</span><span class="tk"><i class="dia"></i>Secure online payments</span>
+      <span class="tk"><i class="dia"></i>WhatsApp support</span><span class="tk"><i class="dia"></i>Retail &amp; wholesale</span>
+      <span class="tk"><i class="dia"></i>Global market focus</span><span class="tk"><i class="dia"></i>AI-assisted experience</span>
+    </div>
+  </div>
+  <div class="mq mq-a rev">
+    <div class="grp">
+      <span class="tk serif">Horizon Auto</span><span class="tk serif">Horizon Energy</span><span class="tk serif">Horizon Tech</span>
+      <span class="tk serif">Horizon Industrial</span><span class="tk serif">Horizon Living</span><span class="tk serif">Horizon Source</span><span class="tk serif">Horizon Labs</span>
+    </div>
+    <div class="grp" aria-hidden="true">
+      <span class="tk serif">Horizon Auto</span><span class="tk serif">Horizon Energy</span><span class="tk serif">Horizon Tech</span>
+      <span class="tk serif">Horizon Industrial</span><span class="tk serif">Horizon Living</span><span class="tk serif">Horizon Source</span><span class="tk serif">Horizon Labs</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NUMBERS ============ -->
+<section class="numbers">
+  <div class="wrap">
+    <div class="num-grid">
+      <div class="num reveal"><b class="foil" data-count="7">0</b><span>Business horizons</span></div>
+      <div class="num reveal"><b class="foil" data-count="2" data-suffix=" regions">0</b><span>Middle East &amp; Africa focus</span></div>
+      <div class="num reveal"><b class="foil" data-count="24" data-suffix="/7">0</b><span>WhatsApp support</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HORIZONS ============ -->
+<section class="horizons" id="horizons">
+  <div class="glow" style="width:460px;height:460px;top:80px;right:-180px"></div>
+  <div class="wrap">
+    <div class="hz-head">
+      <div class="reveal-l">
+        <div class="eyebrow">Explore the Seven Horizons</div>
+        <h2 class="title">One company.<br><span class="foil">Seven</span> business <span class="it foil">horizons.</span></h2>
+      </div>
+      <p class="sub reveal-r">Each Horizon serves a clear purpose — from retail commerce to sourcing and AI-powered innovation.</p>
+    </div>
+    <div class="hz-list">
+      <a class="hz" href="#collection" data-hover>
+        <span class="no">I</span>
+        <div><h3>Horizon Auto</h3><span class="tagline">Moving the world.</span></div>
+        <p>Tyres, auto parts, accessories, fleet supply and garage solutions.</p>
+        <span class="go"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="hz" href="#collection" data-hover>
+        <span class="no">II</span>
+        <div><h3>Horizon Energy</h3><span class="tagline">Powering tomorrow.</span></div>
+        <p>Solar lighting, batteries, emergency power and renewable energy products.</p>
+        <span class="go"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="hz" href="#collection" data-hover>
+        <span class="no">III</span>
+        <div><h3>Horizon Tech</h3><span class="tagline">Connected commerce.</span></div>
+        <p>Electronics, accessories, smart devices, connectivity and business technology.</p>
+        <span class="go"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="hz" href="#collection" data-hover>
+        <span class="no">IV</span>
+        <div><h3>Horizon Industrial</h3><span class="tagline">Built for professionals.</span></div>
+        <p>Tools, safety, construction supply, workshop equipment and industrial goods.</p>
+        <span class="go"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="hz" href="#collection" data-hover>
+        <span class="no">V</span>
+        <div><h3>Horizon Living<span class="soon">Opens later</span></h3><span class="tagline">Designed for modern life.</span></div>
+        <p>Home, lifestyle and everyday essentials for the modern household.</p>
+        <span class="go"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="hz" href="#source" data-hover>
+        <span class="no">VI</span>
+        <div><h3>Horizon Source</h3><span class="tagline">Can't find it? We'll source it.</span></div>
+        <p>OEM, private label, supplier matching, quotation requests and sourcing support.</p>
+        <span class="go"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="hz" href="#labs" data-hover>
+        <span class="no">VII</span>
+        <div><h3>Horizon Labs</h3><span class="tagline">Where commerce meets AI.</span></div>
+        <p>ChatMajlis, Horizon AI, automation, procurement tools and future technology.</p>
+        <span class="go"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLLECTION ============ -->
+<section class="collection" id="collection">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto">
+      <div class="eyebrow center" style="justify-content:center">The Horizon Collection</div>
+      <h2 class="title">A curated collection,<br><span class="it foil">arriving soon.</span></h2>
+      <p class="sub" style="margin-left:auto;margin-right:auto">The first Horizon Verified products are being selected now. Shopify will power images, prices, inventory and checkout behind the scenes.</p>
+    </div>
+    <div class="col-grid">
+      <div class="pcard tilt">
+        <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+        <span class="verified"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Horizon Verified</span>
+        <div class="emblem"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/></svg></div>
+        <h3>Auto Essentials</h3>
+        <p>Inflators, lights, accessories and vehicle support products.</p>
+        <div class="status">Coming soon</div>
+      </div>
+      <div class="pcard tilt">
+        <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+        <span class="verified"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Horizon Verified</span>
+        <div class="emblem"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/></svg></div>
+        <h3>Energy Essentials</h3>
+        <p>Solar flood lights, wall lights and emergency lighting.</p>
+        <div class="status">Coming soon</div>
+      </div>
+      <div class="pcard tilt">
+        <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+        <span class="verified"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Horizon Verified</span>
+        <div class="emblem"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div>
+        <h3>Tech Essentials</h3>
+        <p>Charging, connectivity and smart everyday technology.</p>
+        <div class="status">Coming soon</div>
+      </div>
+      <div class="pcard tilt">
+        <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+        <span class="verified"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Horizon Verified</span>
+        <div class="emblem"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></div>
+        <h3>Sourcing Requests</h3>
+        <p>Bulk orders, private label and product discovery support.</p>
+        <div class="status">Always open</div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:56px">
+      <a class="btn btn-line magnetic" href="https://wa.me/971501447195" data-hover>Ask about a product</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOURCE ============ -->
+<section class="source" id="source">
+  <div class="glow" style="width:500px;height:500px;bottom:-100px;left:-200px;opacity:.35"></div>
+  <div class="wrap">
+    <div class="src-grid">
+      <div class="reveal-l">
+        <div class="eyebrow">Horizon Source</div>
+        <h2 class="title">Need something<br><span class="it foil">specific?</span></h2>
+        <p class="sub">Send product details, quantity, destination and specifications. Seven Horizons sources through trusted manufacturing partners — retail or wholesale, OEM or private label.</p>
+        <div class="steps-mini" id="miniSteps">
+          <span class="trk" id="miniTrk"></span>
+          <div class="smini" data-mini><h4>Tell us what you need</h4><p>Product, quantity, destination — a photo or spec sheet helps.</p></div>
+          <div class="smini" data-mini><h4>We match the supplier</h4><p>Verified manufacturing partners, checked for quality and reliability.</p></div>
+          <div class="smini" data-mini><h4>Quote on WhatsApp</h4><p>Clear pricing, lead times and shipping — direct to your phone.</p></div>
+        </div>
+      </div>
+      <div class="src-form reveal-r">
+        <span class="seal">7</span>
+        <div class="field"><label>What are you looking for?</label><textarea rows="3" placeholder="e.g. 100 solar flood lights, 200W, IP66"></textarea></div>
+        <div class="field"><label>Estimated quantity</label><input type="text" placeholder="e.g. 100 units, monthly"></div>
+        <div class="field"><label>Specification</label>
+          <div class="up" data-hover><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0 4 4m-4-4-4 4M4 20h16"/></svg>Upload image, PDF or product specification</div>
+        </div>
+        <a class="btn btn-gold magnetic" style="width:100%" href="https://wa.me/971501447195" data-hover>
+          <svg class="wa-ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.8 2 .8 2.1.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2.1 2.8 2.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.7.8 2 1 .3.2.5.3.5.4.1.1.1.7-.1 1.4Z"/></svg>
+          Start Sourcing<span class="shine"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LABS ============ -->
+<section class="labs" id="labs">
+  <div class="wrap">
+    <div class="labs-grid">
+      <div class="reveal-l">
+        <div class="eyebrow">Horizon Labs</div>
+        <h2 class="title">Commerce powered<br>by <span class="it foil">intelligence.</span></h2>
+        <p class="sub">Horizon AI, powered by ChatMajlis, helps customers discover products, request quotes and get support faster — in the language of your market.</p>
+        <div class="chips">
+          <a class="chip" href="https://wa.me/971501447195" data-hover>I need 100 solar flood lights</a>
+          <a class="chip" href="https://wa.me/971501447195" data-hover>Best truck tyres for long haul</a>
+          <a class="chip" href="https://wa.me/971501447195" data-hover>Start a private label brand</a>
+          <a class="chip" href="https://wa.me/971501447195" data-hover>Do you ship to Africa?</a>
+        </div>
+      </div>
+      <div class="chat reveal-r" id="chat">
+        <div class="chat-head">
+          <span class="ai">H</span>
+          <div><b>Horizon AI</b><span>At your service</span></div>
+        </div>
+        <div class="bubble bub-user">I need 100 solar flood lights delivered to Nairobi. Can you quote?</div>
+        <div class="bubble bub-ai" id="bubTyping"><span class="typing"><i></i><i></i><i></i></span></div>
+        <div class="bubble bub-ai" id="bubReply" style="display:none">Of course. For <b>100 × 200W solar flood lights</b> to Nairobi, I'll prepare options from our verified energy partners — unit pricing, lead time and sea or air freight. May I confirm the wattage and mounting type?</div>
+        <div class="bubble bub-user" id="bubUser2" style="display:none">200W, wall-mounted, IP66.</div>
+        <div class="bubble bub-ai" id="bubFinal" style="display:none">Noted — <b>your quotation is in preparation.</b> It will reach you on WhatsApp shortly. ✦</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div class="rays"></div>
+      <div class="ring-text">
+        <svg viewBox="0 0 130 130">
+          <defs><path id="circ" d="M65,65 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs>
+          <text><textPath href="#circ">Seven Horizons · Dubai · Est. on Trust · Commerce · Technology · </textPath></text>
+        </svg>
+        <svg viewBox="0 0 130 130" style="position:absolute;inset:0;animation:none"><text class="dot7" x="65" y="75" text-anchor="middle">7</text></svg>
+      </div>
+      <div class="eyebrow center" style="justify-content:center;position:relative;z-index:2">Begin the partnership</div>
+      <h2>Your next horizon<br>starts <span class="it foil">here.</span></h2>
+      <p>Retail, wholesale, sourcing or AI — one message opens all seven horizons.</p>
+      <a class="btn btn-gold magnetic" href="https://wa.me/971501447195" data-hover>
+        <svg class="wa-ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.8 2 .8 2.1.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2.1 2.8 2.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.7.8 2 1 .3.2.5.3.5.4.1.1.1.7-.1 1.4Z"/></svg>
+        Message us on WhatsApp<span class="shine"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="brand" href="#top" data-hover>
+          <span class="brand-mark"><svg class="gem" viewBox="0 0 100 132" fill="none"><defs><clipPath id="gm2"><polygon points="50,4 81,38 90,60 50,128 10,64 19,42"/></clipPath></defs><g clip-path="url(#gm2)"><polygon class="fct" points="50,4 19,42 50,50" fill="#E3C68B"/><polygon class="fct" points="50,4 50,50 81,38" fill="#F0DCA9"/><polygon class="fct" points="19,42 10,64 50,50" fill="#C29C55"/><polygon class="fct" points="81,38 90,60 50,50" fill="#D2AF66"/><polygon class="fct" points="10,64 50,50 50,82" fill="#5A4B36"/><polygon class="fct" points="50,50 90,60 50,82" fill="#453A29"/><polygon class="fct" points="10,64 50,82 50,128" fill="#C7A35C"/><polygon class="fct" points="50,82 90,60 50,128" fill="#9A7C42"/></g><polygon points="50,4 81,38 90,60 50,128 10,64 19,42" fill="none" stroke="rgba(247,231,189,.35)" stroke-width="1"/></svg></span>
+      <span class="brand-name"><i class="g7">7</i>HORIZONS<small>Beyond every horizon</small></span>
+        </a>
+        <p>A commerce and technology group based in Dubai, serving the Middle East, Africa and beyond.</p>
+      </div>
+      <div><h5>Explore</h5><ul>
+        <li><a href="#horizons" data-hover>Horizons</a></li><li><a href="#collection" data-hover>Collection</a></li>
+        <li><a href="#source" data-hover>Source</a></li><li><a href="#labs" data-hover>Labs</a></li></ul>
+      </div>
+      <div><h5>Horizons</h5><ul>
+        <li><a href="#horizons" data-hover>Auto</a></li><li><a href="#horizons" data-hover>Energy</a></li>
+        <li><a href="#horizons" data-hover>Tech</a></li><li><a href="#horizons" data-hover>Industrial</a></li></ul>
+      </div>
+      <div><h5>Contact</h5><ul>
+        <li><a href="mailto:hello@7horizons.co" data-hover>hello@7horizons.co</a></li>
+        <li><a href="tel:+971501447195" data-hover>+971 50 144 7195</a></li>
+        <li><a href="https://wa.me/971501447195" data-hover>WhatsApp</a></li>
+        <li><a href="#" data-hover>Dubai, United Arab Emirates</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="f-word foil" id="fword">7 HORIZONS</div>
+  <div class="wrap"><div class="f-bottom"><span>© 2026 SEVEN HORIZONS — DUBAI, UAE</span><span><i class="dia"></i>&nbsp;&nbsp;Every horizon starts with trust.</span></div></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971501447195" aria-label="WhatsApp" data-hover>
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.8 2 .8 2.1.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2.1 2.8 2.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.7.8 2 1 .3.2.5.3.5.4.1.1.1.7-.1 1.4Z"/></svg>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const touch = window.matchMedia('(hover: none)').matches;
+const ease = "power4.out";
+
+/* ================= SPLIT HEADLINE INTO CHARS ================= */
+document.querySelectorAll('#headline .w').forEach(w=>{
+  const txt = w.textContent;
+  w.textContent = '';
+  [...txt].forEach(c=>{
+    const s = document.createElement('span');
+    s.className = 'ch'; s.textContent = c;
+    w.appendChild(s);
+  });
+});
+
+/* ================= GOLD DUST PARTICLES ================= */
+const cv = document.getElementById('dust'), ctx = cv.getContext('2d');
+let P = [], W, H, dpr = Math.min(devicePixelRatio||1, 2);
+function sizeDust(){
+  const r = cv.parentElement.getBoundingClientRect();
+  W = r.width; H = r.height;
+  cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+function makeDust(){
+  P = [];
+  const n = touch ? 40 : 85;
+  for(let i=0;i<n;i++) P.push({
+    x:Math.random()*W, y:Math.random()*H,
+    r:Math.random()*1.7+.4,
+    vx:(Math.random()-.5)*.16, vy:-(Math.random()*.24+.06),
+    a:Math.random()*.5+.15, tw:Math.random()*Math.PI*2, ts:Math.random()*.02+.006
+  });
+}
+function drawDust(){
+  ctx.clearRect(0,0,W,H);
+  for(const p of P){
+    p.x += p.vx; p.y += p.vy; p.tw += p.ts;
+    if(p.y < -8){p.y = H+8; p.x = Math.random()*W}
+    if(p.x < -8) p.x = W+8; if(p.x > W+8) p.x = -8;
+    const tw = (Math.sin(p.tw)+1)/2;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,7);
+    ctx.fillStyle = `rgba(231,206,144,${(p.a*tw).toFixed(3)})`;
+    ctx.shadowColor = 'rgba(217,185,108,.8)';
+    ctx.shadowBlur = 6*tw;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  if(!reduced) requestAnimationFrame(drawDust);
+}
+sizeDust(); makeDust();
+if(!reduced) drawDust(); else drawDust();
+window.addEventListener('resize',()=>{sizeDust();makeDust()});
+
+/* ================= PRELOADER ================= */
+const loader = document.getElementById('loader');
+function heroEntrance(){
+  if(reduced) return;
+  const tl = gsap.timeline({defaults:{ease}});
+  tl.fromTo("#crest",{opacity:0,y:-34,scale:.7},{opacity:1,y:0,scale:1,duration:1.25,ease:"back.out(1.6)"},0)
+    .fromTo("#crest .fct",{opacity:0,scale:.35,transformOrigin:"50% 50%"},{opacity:1,scale:1,duration:.8,stagger:.06},.1)
+    .fromTo("#sun",{opacity:0,y:70,scale:.85},{opacity:1,y:0,scale:1,duration:1.9,ease:"power2.out"},.2)
+    .to("#base",{strokeDashoffset:0,duration:1.5,ease:"power2.inOut"},.05)
+    .to("#arc1",{strokeDashoffset:0,duration:1.9,ease:"power2.inOut"},.3)
+    .to("#arc2",{strokeDashoffset:0,duration:1.9,ease:"power2.inOut"},.5)
+    .to("#arc3",{strokeDashoffset:0,duration:1.9,ease:"power2.inOut"},.7)
+    .fromTo(".hero .frame",{opacity:0},{opacity:1,duration:1.4},.2)
+    .to("#heroEyebrow",{opacity:1,duration:1},.45)
+    .to("#headline .ch",{opacity:1,y:0,rotateX:0,duration:1.1,stagger:{each:.028,from:"start"},ease:"back.out(1.6)"},.55)
+    .to(".hero-sub",{opacity:1,y:0,duration:1},1.5)
+    .to(".hero-ctas",{opacity:1,y:0,duration:1},1.65)
+    .to(".h7",{opacity:1,y:0,duration:.9,stagger:.08},1.85)
+    .to("#scrollCue",{opacity:1,duration:1},2.4);
+  gsap.to("#sun",{scale:1.06,duration:5,yoyo:true,repeat:-1,ease:"sine.inOut",delay:2.4});
+  gsap.to("#crest",{y:9,duration:3.6,yoyo:true,repeat:-1,ease:"sine.inOut",delay:2.2});
+  gsap.fromTo("#crest .glint",{attr:{x:-70}},{attr:{x:170},duration:1.15,ease:"power2.inOut",repeat:-1,repeatDelay:3.4,delay:2.4});
+  crestFlicker();
+}
+if(reduced){
+  loader.style.display='none';
+  document.querySelectorAll('.curtain').forEach(c=>c.style.display='none');
+}else{
+  document.body.style.overflow='hidden';
+  const count = {v:0};
+  const ltl = gsap.timeline({onComplete:()=>{
+    const out = gsap.timeline({onComplete:()=>{document.body.style.overflow=''}});
+    out.to(".l-inner",{opacity:0,scale:.92,duration:.5,ease:"power2.in"})
+       .set(loader,{display:'none'})
+       .set([".curtain"],{display:'block'})
+       .to("#curT",{yPercent:-100,duration:1.1,ease:"power4.inOut"},.05)
+       .to("#curB",{yPercent:100,duration:1.1,ease:"power4.inOut",onStart:heroEntrance},.05)
+       .set(".curtain",{display:'none'});
+  }});
+  gsap.set(".curtain",{display:'none'});
+  ltl.fromTo(".l-emblem .fct",{opacity:0,scale:.25,transformOrigin:"50% 50%"},
+       {opacity:1,scale:1,duration:.85,stagger:.09,ease:"back.out(1.9)"},0)
+     .fromTo(".l-emblem",{filter:"drop-shadow(0 0 0px rgba(217,185,108,0))"},
+       {filter:"drop-shadow(0 14px 34px rgba(217,185,108,.45))",duration:1.2},.5)
+     .fromTo(".l-emblem .glint",{attr:{x:-70}},{attr:{x:170},duration:.9,ease:"power2.inOut"},1.15)
+     .to(".l-tag",{opacity:1,duration:.8},1.2)
+     .to(".l-word span",{y:0,duration:1,ease},.7)
+     .to(count,{v:100,duration:2.1,ease:"power2.inOut",
+        onUpdate:()=>document.getElementById('lcount').textContent=Math.round(count.v)},0);
+  /* safety: never trap the user if something stalls */
+  setTimeout(()=>{if(loader.style.display!=='none'){loader.style.display='none';
+    document.querySelectorAll('.curtain').forEach(c=>c.style.display='none');
+    document.body.style.overflow='';heroEntrance();}},6500);
+}
+
+/* ================= CUSTOM CURSOR ================= */
+if(!touch && !reduced){
+  const dot = document.getElementById('cdot'), ring = document.getElementById('cring');
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;
+    gsap.set(dot,{x:mx,y:my});
+  });
+  gsap.ticker.add(()=>{
+    rx += (mx-rx)*.14; ry += (my-ry)*.14;
+    gsap.set(ring,{x:rx,y:ry});
+  });
+  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('hovering'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('hovering'));
+  });
+}else{
+  document.getElementById('cdot').style.display='none';
+  document.getElementById('cring').style.display='none';
+}
+
+/* ================= MOUSEMOVE PARALLAX (hero layers) ================= */
+if(!touch && !reduced){
+  const layers = document.querySelectorAll('[data-depth]');
+  window.addEventListener('mousemove',e=>{
+    const nx = (e.clientX/innerWidth - .5), ny = (e.clientY/innerHeight - .5);
+    layers.forEach(l=>{
+      const d = +l.dataset.depth;
+      gsap.to(l,{x:nx*d*2,y:ny*d,duration:1.2,ease:"power2.out",overwrite:"auto"});
+    });
+  });
+}
+
+/* ================= SCROLL PROGRESS / NAV ================= */
+gsap.to("#progress",{scaleX:1,ease:"none",scrollTrigger:{start:0,end:"max",scrub:.3}});
+const nav = document.getElementById('nav');
+let lastY = 0, menuOpen = false;
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 40);
+  nav.classList.toggle('hidden', y > 180 && y > lastY && !menuOpen);
+  lastY = y;
+},{passive:true});
+
+/* ================= MOBILE MENU ================= */
+const burger = document.getElementById('burger');
+const mmenu = document.getElementById('mmenu');
+const mItems = mmenu.querySelectorAll('.mlink, .m-cta');
+function toggleMenu(force){
+  menuOpen = force !== undefined ? force : !menuOpen;
+  burger.classList.toggle('open',menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+  if(menuOpen){
+    gsap.set(mmenu,{visibility:'visible'});
+    gsap.to(mmenu,{opacity:1,duration:.4,ease:"power2.out"});
+    gsap.to(mItems,{opacity:1,y:0,duration:.75,stagger:.07,ease,delay:.1});
+  }else{
+    gsap.to(mItems,{opacity:0,y:34,duration:.3,ease:"power2.in"});
+    gsap.to(mmenu,{opacity:0,duration:.35,delay:.15,onComplete:()=>gsap.set(mmenu,{visibility:'hidden'})});
+  }
+}
+burger.addEventListener('click',()=>toggleMenu());
+mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+
+/* ================= REVEALS ================= */
+[[".reveal"],[".reveal-l"],[".reveal-r"]].forEach(([sel])=>{
+  gsap.utils.toArray(sel).forEach(el=>{
+    gsap.to(el,{opacity:1,x:0,y:0,duration:reduced?0:1.1,ease,
+      scrollTrigger:{trigger:el,start:"top 88%",once:true}});
+  });
+});
+
+/* horizon rows: cinematic cascade */
+gsap.utils.toArray('.hz').forEach((row,i)=>{
+  gsap.fromTo(row,{opacity:0,y:54,clipPath:"inset(0 0 100% 0)"},
+    {opacity:1,y:0,clipPath:"inset(0 0 0% 0)",duration:reduced?0:1.1,ease,delay:(i%3)*.06,
+     scrollTrigger:{trigger:row,start:"top 90%",once:true}});
+});
+
+/* product cards: curtain-clip unveil */
+gsap.utils.toArray('.pcard').forEach((card,i)=>{
+  gsap.to(card,{clipPath:"inset(0 0 0% 0)",duration:reduced?0:1.2,ease:"power3.inOut",delay:i*.12,
+    scrollTrigger:{trigger:".col-grid",start:"top 82%",once:true}});
+});
+
+/* ================= COUNTERS ================= */
+gsap.utils.toArray('[data-count]').forEach(el=>{
+  ScrollTrigger.create({trigger:el,start:"top 90%",once:true,onEnter:()=>{
+    const end = parseFloat(el.dataset.count), suf = el.dataset.suffix||"";
+    const o = {v:0};
+    gsap.to(o,{v:end,duration:reduced?0:1.8,ease:"power2.out",
+      onUpdate:()=>el.textContent=Math.round(o.v)+suf});
+  }});
+});
+
+/* ================= GLOWS: float + scroll parallax ================= */
+if(!reduced){
+  gsap.utils.toArray('.glow').forEach((o,i)=>{
+    gsap.to(o,{y:"+=34",x:i%2?"-=24":"+=24",duration:7+i*2,yoyo:true,repeat:-1,ease:"sine.inOut"});
+  });
+}
+
+/* ================= TILT + SPOTLIGHT ================= */
+if(!touch) document.querySelectorAll('.tilt').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r = card.getBoundingClientRect();
+    const x = e.clientX-r.left, y = e.clientY-r.top;
+    card.style.setProperty('--mx',x+'px'); card.style.setProperty('--my',y+'px');
+    if(reduced) return;
+    gsap.to(card,{rotateX:((y/r.height)-.5)*-7,rotateY:((x/r.width)-.5)*9,scale:1.02,duration:.5,ease:"power2.out"});
+  });
+  card.addEventListener('mouseleave',()=>gsap.to(card,{rotateX:0,rotateY:0,scale:1,duration:.8,ease:"elastic.out(1,.5)"}));
+});
+
+/* ================= MAGNETIC ================= */
+if(!touch && !reduced) document.querySelectorAll('.magnetic').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r = btn.getBoundingClientRect();
+    gsap.to(btn,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,duration:.4,ease:"power2.out"});
+  });
+  btn.addEventListener('mouseleave',()=>gsap.to(btn,{x:0,y:0,duration:.6,ease:"elastic.out(1,.4)"}));
+});
+
+/* ================= MINI STEPS ================= */
+gsap.to("#miniTrk",{height:"100%",ease:"none",
+  scrollTrigger:{trigger:"#miniSteps",start:"top 75%",end:"bottom 55%",scrub:.5}});
+document.querySelectorAll('[data-mini]').forEach(st=>{
+  ScrollTrigger.create({trigger:st,start:"top 72%",
+    onEnter:()=>st.classList.add('active'),
+    onLeaveBack:()=>st.classList.remove('active')});
+});
+
+/* ================= CHAT: live conversation ================= */
+ScrollTrigger.create({trigger:"#chat",start:"top 72%",once:true,onEnter:()=>{
+  const show = (el,d)=>gsap.to(el,{opacity:1,y:0,duration:reduced?0:.7,ease,delay:reduced?0:d});
+  show(".bub-user",0);
+  show("#bubTyping",.6);
+  setTimeout(()=>{
+    document.getElementById('bubTyping').style.display='none';
+    const r = document.getElementById('bubReply'); r.style.display='block'; show(r,0);
+    setTimeout(()=>{
+      const u = document.getElementById('bubUser2'); u.style.display='block'; show(u,0);
+      setTimeout(()=>{
+        const f = document.getElementById('bubFinal'); f.style.display='block'; show(f,0);
+      },reduced?0:1100);
+    },reduced?0:1300);
+  },reduced?0:2100);
+}});
+
+/* ================= FOOTER WORD ================= */
+gsap.fromTo("#fword",{yPercent:42,opacity:.4},{yPercent:8,opacity:1,ease:"none",
+  scrollTrigger:{trigger:"footer",start:"top bottom",end:"bottom bottom",scrub:1}});
+</script>
+
+<script>
+function crestFlicker(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const fcts = document.querySelectorAll('#crest .fct');
+  if(!fcts.length) return;
+  setInterval(()=>{
+    const f = fcts[Math.floor(Math.random()*fcts.length)];
+    gsap.fromTo(f,{opacity:1},{opacity:.55,duration:.5,yoyo:true,repeat:1,ease:"sine.inOut"});
+  },1600);
+}
+</script>
+</body>
+</html>
