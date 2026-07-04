@@ -139,13 +139,6 @@ nav.hidden{transform:translateY(-100%)}
 
 /* ================= HERO ================= */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:150px 0 0;overflow:hidden;text-align:center}
-.hero .frame{position:absolute;inset:clamp(12px,2vw,26px);border:1px solid rgba(249,244,231,.12);pointer-events:none;z-index:1}
-.hero .frame::before,.hero .frame::after,
-.hero .frame b::before,.hero .frame b::after{content:"";position:absolute;width:26px;height:26px;border-color:#D9B96C;border-style:solid}
-.hero .frame::before{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px}
-.hero .frame::after{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0}
-.hero .frame b::before{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px}
-.hero .frame b::after{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0}
 .h-layers{position:absolute;inset:0;overflow:hidden}
 .horizon-art{position:absolute;left:50%;bottom:-5vw;transform:translateX(-50%);width:min(1560px,150vw);pointer-events:none}
 .horizon-art svg{width:100%;height:auto;display:block}
@@ -339,8 +332,9 @@ footer{border-top:1px solid rgba(249,244,231,.12);padding:100px 0 0;overflow:hid
 .f-grid ul{list-style:none;display:grid;gap:14px}
 .f-grid a{color:#F9F4E7;opacity:.75;text-decoration:none;font-size:15px;transition:opacity .25s,color .25s}
 .f-grid a:hover{opacity:1;color:#F7E7BD}
-.f-word{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(46px,8.2vw,118px);line-height:1;letter-spacing:.1em;text-align:center;
-  white-space:nowrap;user-select:none;transform:translateY(16%)}
+.f-word{font-family:"Cinzel",serif;font-weight:500;font-size:clamp(26px,4.4vw,64px);line-height:1;letter-spacing:.22em;text-align:center;
+  white-space:nowrap;user-select:none;transform:translateY(10%);
+  background:linear-gradient(180deg,rgba(217,185,108,.4),rgba(217,185,108,.06));-webkit-background-clip:text;background-clip:text;color:transparent}
 .f-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:26px 0;border-top:1px solid rgba(249,244,231,.12);
   color:#BDB29A;font-size:12.5px;letter-spacing:.14em}
 .wa-float{position:fixed;right:22px;bottom:22px;z-index:190;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
@@ -401,7 +395,7 @@ footer{border-top:1px solid rgba(249,244,231,.12);padding:100px 0 0;overflow:hid
 .crest{width:clamp(78px,9vw,110px);margin:0 auto 34px;opacity:0;position:relative;
   filter:drop-shadow(0 20px 48px rgba(217,185,108,.4))}
 .crest svg{width:100%;height:auto;display:block}
-.f-word{font-family:"Poppins",sans-serif;font-weight:800;letter-spacing:.05em}
+.f-word{font-family:"Poppins",sans-serif;font-weight:800;letter-spacing:.18em;padding:8px 0}
 @media(max-width:640px){
   .brand-name{font-size:14px}
   .brand-name small{font-size:7px;letter-spacing:.36em}
@@ -461,7 +455,6 @@ footer{border-top:1px solid rgba(249,244,231,.12);padding:100px 0 0;overflow:hid
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <div class="frame"><b></b></div>
   <div class="h-layers">
     <canvas id="dust"></canvas>
     <div class="glow" style="width:520px;height:520px;top:-140px;right:-120px" data-depth="14"></div>
@@ -761,7 +754,7 @@ footer{border-top:1px solid rgba(249,244,231,.12);padding:100px 0 0;overflow:hid
       </div>
     </div>
   </div>
-  <div class="f-word foil" id="fword">7 HORIZONS</div>
+  <div class="f-word" id="fword">7 HORIZONS</div>
   <div class="wrap"><div class="f-bottom"><span>© 2026 SEVEN HORIZONS — DUBAI, UAE</span><span><i class="dia"></i>&nbsp;&nbsp;Every horizon starts with trust.</span></div></div>
 </footer>
 
@@ -839,7 +832,6 @@ function heroEntrance(){
     .to("#arc1",{strokeDashoffset:0,duration:1.9,ease:"power2.inOut"},.3)
     .to("#arc2",{strokeDashoffset:0,duration:1.9,ease:"power2.inOut"},.5)
     .to("#arc3",{strokeDashoffset:0,duration:1.9,ease:"power2.inOut"},.7)
-    .fromTo(".hero .frame",{opacity:0},{opacity:1,duration:1.4},.2)
     .to("#heroEyebrow",{opacity:1,duration:1},.45)
     .to("#headline .ch",{opacity:1,y:0,rotateX:0,duration:1.1,stagger:{each:.028,from:"start"},ease:"back.out(1.6)"},.55)
     .to(".hero-sub",{opacity:1,y:0,duration:1},1.5)
@@ -1031,7 +1023,7 @@ ScrollTrigger.create({trigger:"#chat",start:"top 72%",once:true,onEnter:()=>{
 }});
 
 /* ================= FOOTER WORD ================= */
-gsap.fromTo("#fword",{yPercent:42,opacity:.4},{yPercent:8,opacity:1,ease:"none",
+gsap.fromTo("#fword",{yPercent:30,opacity:.3},{yPercent:2,opacity:.75,ease:"none",
   scrollTrigger:{trigger:"footer",start:"top bottom",end:"bottom bottom",scrub:1}});
 </script>
 
